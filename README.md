@@ -64,7 +64,7 @@ o rem ajuda a deixar mais fluido o layout.
 
 criar um arquivo global.css dentro de uma pasta styles em assets.
 
-exemplo de global.css
+Exemplo de global.css:
 
     :root {
 
