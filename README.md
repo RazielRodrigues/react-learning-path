@@ -152,3 +152,27 @@ criar arquivo index.tsx
     }
 
     export default Landing;
+
+Adicionar componente e global css em app com:
+
+    import React from 'react';
+
+    import Landing from './pages/landing/index';
+
+    import './assets/styles/global.css';
+
+    function App() {
+    return (
+        <Landing />
+    );
+    }
+
+    export default App;
+
+Para transformar em uma variavel JS e usar depois:
+
+    import logoImg from '../../assets/images/logo.svg';
+
+chamando a variavel:
+
+    {logoImg}
