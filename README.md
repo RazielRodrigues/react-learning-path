@@ -137,3 +137,18 @@ Exemplo de global.css:
         }
     }
 
+## 2. Criar componente
+
+dentro da pasta src criar uma pages e dentro dela uma pasta chamada landing.
+
+criar arquivo index.tsx
+
+    //sempre importar
+    import React from 'react';
+
+    //função que retorna o html
+    function Landing() {
+        return <h1>Landing...</h1>
+    }
+
+    export default Landing;
