@@ -9,3 +9,16 @@ Uma biblioteca de construção de interfaces Single page aplication que visa mel
 Configuração de ambiente:
 
 https://www.notion.so/Instala-o-3d8bc65b8a0f48249bf3037156eb0a15#aa34caa824eb4c3a8b32ae793740e303
+
+# Criando o projeto
+
+com yarn:
+
+    yarn create react-app web --template typescript
+
+entrar no projeto e rodar:
+
+    yarn start
+
+Importante limpar o projeto.
+
