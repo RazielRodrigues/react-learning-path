@@ -1,6 +1,9 @@
 :root {
+
+    /* font size padrão responsivo */
     font-size: 60%;
 
+    /* Cores em variaveis quando alteradas mudam toda a cor da aplicação */
     --color-background: #F0F0F7;
     --color-primary-lighter: #9871F5;
     --color-primary-light: #916BEA;
@@ -22,12 +25,15 @@
   
   }
 
+
+  /* alinhando todos os elementos ao centro da tela */
   *{
       margin: 0;
       padding: 0;
       box-sizing: border-box;
   }
 
+  /* definindo a altura do documento */
   html, body, #root{
     height: 100vh;
   }
@@ -36,6 +42,7 @@
       background-color: var(--color-background);
   }
 
+  /* alinhando todos os elentos da div de renderização do react */
   #root{
       display: flex;
       align-items: center;
@@ -55,6 +62,7 @@ textarea{
     max-width: 700px;
 }
 
+/* quando chega em 700px altera o tamanho da font para 10px */
 @media (min-width: 700px){
     :root{
         font-size: 62.5%;

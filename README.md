@@ -52,10 +52,14 @@ O metodo render é responsavel por injetar o codigo:
 
 --dica
 
+# 1. Estilizando projeto para responsividade
+
 O que é REM?
 
 uma unidade de medida usada para responsividade, pois faz um calculo da tela do usuario:
 
 1 rem = 9.6 px
 
-o rem ajuda a deixar mais fluido o layout
+o rem ajuda a deixar mais fluido o layout.
+
+criar um arquivo global.css dentro de uma pasta styles em assets.
