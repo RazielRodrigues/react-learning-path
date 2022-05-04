@@ -3,13 +3,23 @@ interface ButtonProps {
 }
 
 function Button(props: ButtonProps) {
-  return <button className="bg-violet-500 p-2">{props.text ?? 'Default'}</button>
+  return <button 
+    className="
+      bg-violet-500 
+      px-2 h-10 
+      rounded 
+      hover:bg-violet-900 
+      text-white 
+      transition-color"
+    >
+    {props.text ?? 'Default'}
+  </button>
 }
 
 function App() {
-  return <div>
-    <Button text="Enviar" />,
-    <Button text="Delete" />,
+  return <div className="flex gap-2">
+    <Button text="Enviar" />
+    <Button text="Delete" />
     <Button />
   </div>
 }
