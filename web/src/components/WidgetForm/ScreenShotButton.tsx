@@ -12,12 +12,13 @@ export function ScreenShotButton({ onScreenshotTook }: ScreenShotButtonProps) {
     const [isTakingScreenshot, setIsTakingScreenshot] = useState(false);
 
     async function handleTakeScreenShot() {
+        setIsTakingScreenshot(true);
 
         const canvas = await html2canvas(document.querySelector('html')!);
         const base64image = canvas.toDataURL('image/png');
 
         onScreenshotTook(base64image);
-        
+
         setIsTakingScreenshot(false);
 
     }
@@ -31,6 +32,7 @@ export function ScreenShotButton({ onScreenshotTook }: ScreenShotButtonProps) {
                 focus:outline-none focus:ring-2 focus:ring-offset-2 
                 focus:ring-offset-zinc-300 focus:ring-brand-500
             "
+            onClick={handleTakeScreenShot}
             >
             {isTakingScreenshot ? <Loading /> : <Camera className="w-6 h-6 text-zinc-100" />}
         </button>
