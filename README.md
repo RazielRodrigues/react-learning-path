@@ -54,4 +54,4 @@
             - radix
             - ariakit
             - headless ui
-            
+            heroku repo:reset -a raziel-react-chat
