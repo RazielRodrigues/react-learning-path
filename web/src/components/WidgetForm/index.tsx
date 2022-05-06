@@ -1,27 +1,28 @@
 import bugImageUrl from './../../assets/emoji.svg';
-import otherImageUrl from './../../assets/emoji-1.svg';
-import ideaImageUrl from './../../assets/emoji-2.svg';
+import ideaImageUrl from './../../assets/emoji-1.svg';
+import otherImageUrl from './../../assets/emoji-2.svg';
 import { useState } from 'react';
 import { FeedbackTypeStep } from './Steps/FeedbackTypeStep';
 import { FeedbackContentStep } from './Steps/FeedbackContentStep';
+import { FeedbackSuccessStep } from './Steps/FeedbackSuccessStep';
 
 export const feedbackTypes = {
     BUG: {
-        title: 'bug',
+        title: 'Bug',
         image: {
             source: bugImageUrl,
             alt: 'Imagem de um inseto'
         }
     },
     IDEA: {
-        title: 'ideia',
+        title: 'Ideia',
         image: {
             source: ideaImageUrl,
             alt: 'Imagem de um inseto'
         }
     },
     OTHER: {
-        title: 'outros',
+        title: 'Outros',
         image: {
             source: otherImageUrl,
             alt: 'Imagem de interação'
@@ -34,8 +35,10 @@ export type FeedbackType = keyof typeof feedbackTypes;
 export function WidgetForm() {
 
     const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
+    const [feedbackContentSent, setFeedbackContentSent] = useState(false);
 
     function handleRestartFeedback() {
+        setFeedbackContentSent(false);
         setFeedbackType(null);
     }
 
@@ -46,13 +49,20 @@ export function WidgetForm() {
         flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto
         ">
 
-            {!feedbackType ? (
-                <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
+            { feedbackContentSent ? (
+                < FeedbackSuccessStep onFeedbackRestartRequested={handleRestartFeedback}/>
             ) : (
-                <FeedbackContentStep
-                    feedbackType={feedbackType}
-                    onFeedbackRestartRequested={handleRestartFeedback}
-                />
+                <>
+                    {!feedbackType ? (
+                        <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType} />
+                    ) : (
+                        <FeedbackContentStep
+                            feedbackType={feedbackType}
+                            onFeedbackRestartRequested={handleRestartFeedback}
+                            onFeedbackSent={() => setFeedbackContentSent(true)}
+                        />
+                    )}
+                </>
             )}
 
             <footer className="text-xs text-neutral-400">

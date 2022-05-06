@@ -5,11 +5,12 @@ import { ScreenShotButton } from './../ScreenShotButton';
 import { useState, FormEvent } from "react";
 
 interface FeedbackContentStepProps {
-    feedbackType: FeedbackType,
+    feedbackType: FeedbackType;
+    onFeedbackSent: () => void;
     onFeedbackRestartRequested: () => void;
 }
 
-export function FeedbackContentStep({ feedbackType, onFeedbackRestartRequested }: FeedbackContentStepProps) {
+export function FeedbackContentStep({ feedbackType, onFeedbackRestartRequested ,onFeedbackSent}: FeedbackContentStepProps) {
 
     const [screenshot, setScreenshot] = useState<string | null>(null)
     const [comment, setComment] = useState<string>('')
@@ -22,6 +23,7 @@ export function FeedbackContentStep({ feedbackType, onFeedbackRestartRequested }
             screenshot,
             comment
         })
+        onFeedbackSent();
     }
 
     return (
@@ -65,8 +67,9 @@ export function FeedbackContentStep({ feedbackType, onFeedbackRestartRequested }
                     />
 
                     <button
+                        disabled={comment.length === 0}
                         type="submit"
-                        className="p-2 bg-brand-500 rounded-md border-transparent flex-1 flex justify-center items-center text-sm hover:bg-brand-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-300 focus:ring-brand-500 transition-colors duration"
+                        className="p-2 bg-brand-500 rounded-md border-transparent flex-1 flex justify-center items-center text-sm hover:bg-brand-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-300 focus:ring-brand-500 transition-colors duration disabled:opacity-50 disabled:cursor-not-allowed disabled:hover-bg-brand-500"
                     >
                         Enviar feedback
                     </button>
