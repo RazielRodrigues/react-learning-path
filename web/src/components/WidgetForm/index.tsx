@@ -3,7 +3,7 @@ import bugImageUrl from './../../assets/emoji.svg';
 import otherImageUrl from './../../assets/emoji-1.svg';
 import ideaImageUrl from './../../assets/emoji-2.svg';
 import { useState } from 'react';
-import { FeedbackType } from './Steps/FeedbackTypeStep';
+import { FeedbackTypeStep } from './Steps/FeedbackTypeStep';
 
 export const feedbackTypes = {
     BUG: {
@@ -34,7 +34,6 @@ export type FeedbackType = keyof typeof feedbackTypes;
 export function WidgetForm(){
 
     const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
-
 
     return (
         <div className="bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center shadow-lg w-[calc(100vw-2rem)] md:w-auto">
