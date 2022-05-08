@@ -36,7 +36,7 @@ export class SubmitFeedbackUseCase {
                 `<div style="text-align: center;">`,
                     `<h1>tipo: ${type}</h1>`,
                     `<h1>comentario: ${comment}</h1>`,
-                    `<h1>foto: ${screenshot}</h1>`,
+                    screenshot ? `<img src="${screenshot} "/>`: '',                    
                 `</div>`
             ].join('\n')
         });

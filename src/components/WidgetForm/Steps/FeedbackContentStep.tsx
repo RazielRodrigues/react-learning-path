@@ -3,6 +3,8 @@ import { FeedbackType, feedbackTypes } from '..';
 import { ArrowLeft } from "phosphor-react";
 import { ScreenShotButton } from './../ScreenShotButton';
 import { useState, FormEvent } from "react";
+import { api } from './../../../lib/api';
+import { Loading } from "../../Loading";
 
 interface FeedbackContentStepProps {
     feedbackType: FeedbackType;
@@ -14,15 +16,21 @@ export function FeedbackContentStep({ feedbackType, onFeedbackRestartRequested ,
 
     const [screenshot, setScreenshot] = useState<string | null>(null)
     const [comment, setComment] = useState<string>('')
+    const [isSendingFeedback, setIsSendingFeedback] = useState<boolean>(false)
 
     const feedbackTypesInfo = feedbackTypes[feedbackType];
 
-    function handleSubmitFeedback(event: FormEvent) {
+    async function handleSubmitFeedback(event: FormEvent) {
         event.preventDefault();
-        console.log({
-            screenshot,
-            comment
-        })
+        setIsSendingFeedback(true);
+
+        await api.post('/feedbacks', {
+            type: feedbackType,
+            comment,
+            screenshot
+        });
+
+        setIsSendingFeedback(false);
         onFeedbackSent();
     }
 
@@ -67,11 +75,11 @@ export function FeedbackContentStep({ feedbackType, onFeedbackRestartRequested ,
                     />
 
                     <button
-                        disabled={comment.length === 0}
+                        disabled={comment.length === 0 || isSendingFeedback}
                         type="submit"
                         className="p-2 bg-brand-500 rounded-md border-transparent flex-1 flex justify-center items-center text-sm hover:bg-brand-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-300 focus:ring-brand-500 transition-colors duration disabled:opacity-50 disabled:cursor-not-allowed disabled:hover-bg-brand-500"
                     >
-                        Enviar feedback
+                        {isSendingFeedback ? <Loading /> : 'Enviar feedback'}
                     </button>
 
                 </footer>
