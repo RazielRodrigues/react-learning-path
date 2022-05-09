@@ -1,4 +1,5 @@
 # React JS
+    Projeto desenvolvido na trilha Next Level Week da Rocketseat!
 
     React é para construções de SPA (Single Page Applications)
     com o react a gente utiliza JSON para exibir dados.
@@ -17,8 +18,7 @@
     react-dom integração com dom
     react-tv cintegrwação com tv
     a div com o id root na URL é onde é manipulado os dados
-
-    strcit mode
+    strict mode
 
     componente é uma função que retorna HTML
         - padrão letra maiuscla como classe
@@ -53,6 +53,4 @@
         - avisar que tem
             - radix
             - ariakit
-            - headless ui
-            heroku repo:reset -a raziel-react-chat
-            
+            - headless ui            
