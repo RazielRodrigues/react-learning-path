@@ -4,6 +4,9 @@
 
     React é para construções de SPA (Single Page Applications)
     com o react a gente utiliza JSON para exibir dados.
+    
+    tecnologias do projeto: react, typescript, tailwind css, node, express, jest, vercel e railway.
+    
 #### instalando o react
 
     npm create vite@latest
