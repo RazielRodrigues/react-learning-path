@@ -1,9 +1,14 @@
+import Hierarquia from './HIerarquia';
+
 const Primeiro = () => {
     return (
         <div>
             <h1 className="logo">
-                TESTE Primeiro
+                BEM VINDO!
             </h1>
+
+            <Hierarquia />
+
         </div>
 
     )
