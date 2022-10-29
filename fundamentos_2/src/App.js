@@ -11,6 +11,8 @@ import { CarDetails } from './components/CarDetails';
 import Fragment from './components/Fragment';
 import Container from './components/Container';
 import FunctionsProp from './components/FunctionsProp';
+import Message from './components/Message';
+import ChangeMessageState from './components/ChangeMessageState';
 
 function App() {
 
@@ -27,6 +29,12 @@ function App() {
 
   function show() {
     alert("Vem com o pai")
+  }
+
+  const [message, setMessage] = useState("")
+
+  const handleMessage = (msg) => {
+    setMessage(msg)
   }
 
   return (
@@ -69,6 +77,8 @@ function App() {
       </ Container>
 
       <FunctionsProp show={show} />
+      <Message msg={message} />
+      <ChangeMessageState handleMessage={handleMessage} />
 
     </div>
   );
