@@ -7,6 +7,7 @@ import ListRender from './components/ListRender';
 import Conditional from './components/Conditional';
 import Username from './components/Username';
 import { useState } from 'react';
+import { CarDetails } from './components/CarDetails';
 
 function App() {
 
@@ -23,6 +24,11 @@ function App() {
       {/* <Username name={testeNome} /> // forma 2 -- passando via varaivel */}
       {/* <Username name={nomeHook} /> // forma 1 -- passando via hook */}
       <Username name={nomeHook} />
+      <CarDetails
+        brand="VW"
+        km="100.000"
+        color="RED"
+      />
     </div>
   );
 }
