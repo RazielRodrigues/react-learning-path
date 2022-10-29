@@ -8,6 +8,9 @@ import Conditional from './components/Conditional';
 import Username from './components/Username';
 import { useState } from 'react';
 import { CarDetails } from './components/CarDetails';
+import Fragment from './components/Fragment';
+import Container from './components/Container';
+import FunctionsProp from './components/FunctionsProp';
 
 function App() {
 
@@ -22,6 +25,10 @@ function App() {
     { id: 4, brand: 'Mustang', color: "Red", newCar: true, km: 0 }
   ]
 
+  function show() {
+    alert("Vem com o pai")
+  }
+
   return (
     <div className="App">
       <ManageData />
@@ -34,12 +41,34 @@ function App() {
 
       {cars.map((car) => (
         <CarDetails
+          key={car.id}
           brand={car.brand}
           km={car.km}
           color={car.color}
           newCar={car.newCar}
         />
       ))}
+
+      <Fragment nome="FRAGMENT DOIDO" />
+
+      <Container propNormal="doidera essse reart" >
+
+        <h1>TESTE DO CHILDREN COM O CHILDREN É POSSIVEL
+          ABRAÇAR DADOS DE UM COMPONENTE PARA O OUTRO
+          SEM PASSAR COMO PROP
+          DAI O CHILDREN SERVE PARA PASSAR "HTML" PARA
+          O OUTRO COMPONENTE
+        </h1>
+      </ Container>
+
+
+      <Container propNormal="kakakak" >
+
+        <h1>LOREM IPSUM
+        </h1>
+      </ Container>
+
+      <FunctionsProp show={show} />
 
     </div>
   );
