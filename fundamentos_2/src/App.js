@@ -13,6 +13,7 @@ import Container from './components/Container';
 import FunctionsProp from './components/FunctionsProp';
 import Message from './components/Message';
 import ChangeMessageState from './components/ChangeMessageState';
+import Challenge from './components/Challenge';
 
 function App() {
 
@@ -37,8 +38,30 @@ function App() {
     setMessage(msg)
   }
 
+  const pessoas = [
+    { id: 1, nome: 'Mustanga', idade: 18, profissao: 'dev' },
+    { id: 2, nome: 'Kia', idade: 15, profissao: 'dev' },
+    { id: 3, nome: 'Renaultase', idade: 10, profissao: 'dev' },
+    { id: 4, nome: 'Munsit', idade: 20, profissao: 'dev' }
+  ]
+
   return (
     <div className="App">
+
+      {pessoas.map((pessoa) => (
+        <Challenge
+          key={pessoa.key}
+          nome={pessoa.nome}
+          idade={pessoa.idade}
+          profissao={pessoa.profissao}
+        />
+      ))}
+
+
+
+
+
+
       <ManageData />
       <ListRender />
       <Conditional />
