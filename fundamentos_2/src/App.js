@@ -15,6 +15,13 @@ function App() {
 
   let [nomeHook, setNomeHoook] = useState('Jao')
 
+  const cars = [
+    { id: 1, brand: 'Mustang', color: "Blue", newCar: true, km: 0 },
+    { id: 2, brand: 'Kia', color: "Black", newCar: true, km: 0 },
+    { id: 3, brand: 'Renault', color: "Blue", newCar: false, km: 10000 },
+    { id: 4, brand: 'Mustang', color: "Red", newCar: true, km: 0 }
+  ]
+
   return (
     <div className="App">
       <ManageData />
@@ -24,11 +31,16 @@ function App() {
       {/* <Username name={testeNome} /> // forma 2 -- passando via varaivel */}
       {/* <Username name={nomeHook} /> // forma 1 -- passando via hook */}
       <Username name={nomeHook} />
-      <CarDetails
-        brand="VW"
-        km="100.000"
-        color="RED"
-      />
+
+      {cars.map((car) => (
+        <CarDetails
+          brand={car.brand}
+          km={car.km}
+          color={car.color}
+          newCar={car.newCar}
+        />
+      ))}
+
     </div>
   );
 }
