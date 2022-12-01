@@ -86,7 +86,8 @@ function App() {
               name="price"
               type="number" />
           </label>
-          <button type='submit'>Salvar</button>
+          {loading && <button type='submit' disabled>Aguarde</button>}
+          {!loading && <button type='submit'>Salvar</button>}
         </form>
       </div>
     </div>
