@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 export const useFetch = (url) => {
 
+    // loading
+    const [loading, setLoading] = useState(false);
+
     // get states
     const [data, setData] = useState(null);
 
@@ -12,9 +15,11 @@ export const useFetch = (url) => {
     // effect get
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             const res = await fetch(url);
             const json = await res.json();
             setData(json)
+            setLoading(false);
         }
 
         fetchData();
@@ -53,5 +58,5 @@ export const useFetch = (url) => {
 
     }, [config, method, url])
 
-    return { data, httpConfig };
+    return { data, httpConfig, loading };
 }
