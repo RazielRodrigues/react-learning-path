@@ -1,6 +1,7 @@
 import './App.css';
 
 import { useState, useEffect } from 'react';
+import { useFetch } from './hooks/useFetch';
 
 const url = 'http://localhost:3000/products';
 
@@ -9,20 +10,23 @@ function App() {
   // 1 - PEGANDO DADOS
   const [products, setProducts] = useState([]);
 
-  // Pegando dados utilizando o useEffect
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(url);
-      const data = await res.json();
-      setProducts(data);
-    }
+  // 4 - CUSTOM HOOKS
+  const { data: items, httpConfig } = useFetch(url);
 
-    fetchData();
-  }, [])
+  // Pegando dados utilizando o useEffect
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const res = await fetch(url);
+  //     const data = await res.json();
+  //     setProducts(data);
+  //   }
+
+  //   fetchData();
+  // }, [])
 
   // 2 - ADICIONANDO DADOS
   const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,17 +36,20 @@ function App() {
       price
     }
 
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
+    // const res = await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(payload)
+    // })
 
-    const data = await res.json();
+    const added = httpConfig(payload, 'POST')
+    setProducts((products) => [...products, added])
 
-    console.log(data)
+    // ADICIONA NA LISTA APOS TER SALVO NO BANCO
+    setName('');
+    setPrice('');
 
   }
 
@@ -50,7 +57,7 @@ function App() {
     <div className="App">
       <h1>Lista de produtos</h1>
       <ul>
-        {products.map((product) => (
+        {items && items.map((product) => (
           <li key={product.id}>{product.name} - R$: {product.price}</li>
         ))}
       </ul>
