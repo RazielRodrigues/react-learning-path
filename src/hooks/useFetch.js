@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 export const useFetch = (url) => {
 
+    // deletar
+    const [itemId, setItemId] = useState();
+
+    // loading
+    const [erros, setErros] = useState(null);
+
     // loading
     const [loading, setLoading] = useState(false);
 
@@ -16,9 +22,15 @@ export const useFetch = (url) => {
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
-            const res = await fetch(url);
-            const json = await res.json();
-            setData(json)
+
+            try {
+                const res = await fetch(url);
+                const json = await res.json();
+                setData(json)
+            } catch (error) {
+                setErros('Houve erro na requisição')
+            }
+
             setLoading(false);
         }
 
@@ -37,6 +49,16 @@ export const useFetch = (url) => {
             })
         }
 
+        if (method === 'DELETE') {
+            setConfig({
+                method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            setItemId(data)
+        }
+
         setMethod(method)
     }
 
@@ -52,11 +74,20 @@ export const useFetch = (url) => {
 
                 setCallFetch(json);
             }
+
+            if (method === 'DELETE') {
+                let deleteUrl = `${url}/${itemId}`;
+
+                const res = await fetch(deleteUrl, config);
+                const json = await res.json();
+
+                setCallFetch(json);
+            }
         }
 
         httpRequest();
 
     }, [config, method, url])
 
-    return { data, httpConfig, loading };
+    return { data, httpConfig, loading, erros };
 }

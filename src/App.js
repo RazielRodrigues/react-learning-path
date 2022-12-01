@@ -13,7 +13,7 @@ function App() {
   const [products, setProducts] = useState([]);
 
   // 4 - CUSTOM HOOKS
-  const { data: items, httpConfig, loading } = useFetch(url);
+  const { data: items, httpConfig, loading, erros } = useFetch(url);
 
   // Pegando dados utilizando o useEffect
   // useEffect(() => {
@@ -55,13 +55,31 @@ function App() {
 
   }
 
+  const handleDelete = async (e) => {
+
+    const added = httpConfig(e.target.value, 'DELETE');
+    console.log(added);
+
+
+    // setProducts((products) => [...products, added])
+
+    // ADICIONA NA LISTA APOS TER SALVO NO BANCO
+    // setName('');
+    // setPrice('');
+
+  }
+
   return (
     <div className="App">
       <h1>Lista de produtos</h1>
       {loading && <p>Carregando dados...</p>}
+      {erros && <h1>{erros}</h1>}
       {!loading && <ul>
         {items && items.map((product) => (
-          <li key={product.id}>{product.name} - R$: {product.price}</li>
+          <li key={product.id}>
+            {product.name} - R$: {product.price}
+            <button value={product.id} onClick={handleDelete}>DELETAR</button>
+          </li>
         ))}
       </ul>
       }
