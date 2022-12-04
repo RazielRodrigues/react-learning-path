@@ -7,6 +7,8 @@ import Product from './pages/Product';
 import Navbar from './components/Navbar';
 import NotFound from './pages/NotFound';
 import Details from './pages/Details';
+import SearchForm from './components/SearchForm';
+import Search from './pages/Search';
 
 function App() {
   return (
@@ -18,12 +20,17 @@ function App() {
       <BrowserRouter>
         <Navbar></Navbar>
 
+        <SearchForm></SearchForm>
+
         <Routes>
           <Route path="/about" element={<About />}></Route>
           <Route path="/" element={<Home />}></Route>
 
           <Route path="/product/:id" element={<Product />}></Route>
           <Route path="/product/:id/details" element={<Details />}></Route>
+
+          <Route path="/search" element={<Search />}></Route>
+
 
           {/* rota do 404 */}
           <Route path="*" element={<NotFound />}></Route>
