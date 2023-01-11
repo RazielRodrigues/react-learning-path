@@ -1,3 +1,5 @@
+import { db } from '../firebase/config'
+
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -40,14 +42,42 @@ export const useAuthentication = () => {
                 displayName: data.displayName
             })
 
+            setLoading(false)
+
             return user
 
         } catch (error) {
-            console.error(error.message)
-            console.error(typeof error.message)
+            setError(error.message)
+            setLoading(false)
         }
 
-        setLoading(false)
+    }
+
+    const logout = () => {
+        signOut(auth);
+        checkIfIsCancelled();
+    }
+
+
+    const login = async (data) => {
+
+        checkIfIsCancelled();
+
+        setLoading(true)
+        setError(false)
+
+        try {
+
+            await signInWithEmailAndPassword(auth, data.email, data.password)
+            setLoading(false)
+
+        } catch (error) {
+
+            setLoading(false)
+            setError(error.message)
+
+        }
+
     }
 
     useEffect(() => {
@@ -59,7 +89,9 @@ export const useAuthentication = () => {
         auth,
         createUser,
         error,
-        loading
+        loading,
+        logout,
+        login
     }
 
 }
