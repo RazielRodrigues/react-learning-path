@@ -11,6 +11,8 @@ export const Register = () => {
     const [confirmPassword, setconfirmPassword] = useState("");
     const [error, setError] = useState("");
 
+    const { createUser, error: authError, loading } = useAuthentication();
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
